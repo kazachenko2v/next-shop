@@ -3,13 +3,13 @@ import useSWR from "swr";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export default (page: number, platform: number[] | null) => {
+export default (page: number, platform: string[] | number[] | null) => {
   const { data, error, isLoading } = useSWR(
     PATH +
       GAMES +
       KEY +
       (page > 1 ? "&page=" + page : "") +
-      (platform ? "&platforms=" + platform : ""),
+      (platform && platform.length > 0 ? "&platforms=" + platform : ""),
     fetcher
   );
 

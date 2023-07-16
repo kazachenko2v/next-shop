@@ -1,47 +1,64 @@
+"use client";
+
 import React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import createQueryString from "@/utils/createQueryString";
+import { default as RcPagination } from "rc-pagination";
+import { useRouter, useSearchParams } from "next/navigation";
+import { updateSearchParams } from "@/lib/utils2";
+import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
+import { Button } from "./ui/Button";
 
+interface PaginationProps {
+  count: number;
+}
 
-const Pagination = ({page,
-  setPage,
-}: {
-  page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-}) => {
-
+const Pagination: React.FC<PaginationProps> = ({ count }) => {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
+  const currentPage = searchParams.get("page")
+    ? Number(searchParams.get("page"))
+    : 1;
 
-
-
-  const nextHandler = () => {
-    setPage((prev) => prev + 1);
-    router.push(
-      pathname +
-        "?" +
-        createQueryString(searchParams.toString(), "page", page + 1)
-    );
-  };
-
-  const prevHandler = () => {
-    if (page <= 1) {
-      return;
-    }
-    setPage((prev) => prev - 1);
-    router.push(
-      pathname +
-        "?" +
-        createQueryString(searchParams.toString(), "page", page - 1)
-    );
+  const clickHandler = (page: number) => {
+    router.push(updateSearchParams("page", page.toString()));
   };
 
   return (
-    <>
-      <button onClick={prevHandler}>prev</button>
-      <button onClick={nextHandler}>next</button>
-    </>
+    <RcPagination
+      total={count}
+      pageSize={20}
+      current={currentPage}
+      onChange={clickHandler}
+      hideOnSinglePage
+      className="flex gap-4 py-3"
+      itemRender={(current, type) => {
+        switch (type) {
+          case "prev":
+            return (
+              <Button variant="outline">
+                <ChevronLeft />
+              </Button>
+            );
+          case "next":
+            return (
+              <Button variant="outline">
+                <ChevronRight />
+              </Button>
+            );
+          case "jump-prev":
+          case "jump-next":
+            return (
+              <Button variant="outline">
+                <MoreHorizontal />
+              </Button>
+            );
+          case "page":
+            if (current === currentPage) {
+              return <Button>{current}</Button>;
+            }
+            return <Button variant="outline">{current}</Button>;
+        }
+      }}
+    />
   );
 };
 

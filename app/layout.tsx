@@ -2,6 +2,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/Toster";
+import Providers from "@/components/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,17 +15,22 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  authModal,
 }: {
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body
-        className={`max-w-7xl mx-auto flex flex-col h-screen  ${inter.className}`}
-      >
-        <Header />
-        <main className="grow">{children}</main>
-        <Footer />
+      <body className={cn("flex flex-col h-screen", inter.className)}>
+        <Providers>
+          <Header />
+          <main className="container grow max-w-6xl mx-auto">{children}</main>
+          {authModal}
+
+          <Footer />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

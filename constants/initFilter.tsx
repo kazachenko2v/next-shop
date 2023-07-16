@@ -15,6 +15,7 @@ export const PLATFORMS = [
   { id: 13, name: "Neo Geo", slug: "neo-geo" },
   { id: 14, name: "Web", slug: "web" },
 ];
+
 export const PLATFORMS_ID = PLATFORMS.map((item) => item.id);
 
 export const TAGS = [

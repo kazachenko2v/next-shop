@@ -1,17 +1,7 @@
-import Image from "next/image";
+import { Loader2 } from "lucide-react";
 
 const Loading = () => {
-  return (
-    <div className="w-full min-h-full flex justify-center items-center">
-      <Image
-        src="assets/icons/loader.svg"
-        width={50}
-        height={50}
-        alt="loader"
-        className="object-contain"
-      />
-    </div>
-  );
+  return <Loader2 className="h-10 w-10 animate-spin text-orange-500" />;
 };
 
 export default Loading;
