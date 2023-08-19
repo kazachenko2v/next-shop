@@ -1,6 +1,7 @@
 import { Icons } from "@/components/Icons";
-import UserAuthForm from "@/components/UserAuthForm";
+import GoogleAuthForm from "@/components/GoogleAuthForm";
 import Link from "next/link";
+import CredentialsSignUpForm from "./CredentialsSignUpForm";
 
 const SignUp = () => {
   return (
@@ -8,16 +9,18 @@ const SignUp = () => {
       <div className="flex flex-col space-y-2 text-center">
         <Icons.logo className="mx-auto h-6 w-6" />
         <h1 className="text-2xl font-semibold tracking-tight">Sign Up</h1>
-        <p className="text-sm max-w-xs mx-auto">
-          By continuing, you are setting up a Breadit account and agree to our
+        {/* <p className="mx-auto max-w-xs text-sm">
+          By continuing, you are setting up a NextShop account and agree to our
           User Agreement and Privacy Policy.
-        </p>
+        </p> */}
       </div>
-      <UserAuthForm />
+      <GoogleAuthForm />
+      <CredentialsSignUpForm />
       <p className="px-8 text-center text-sm text-muted-foreground">
-        Already a Breadditor?{" "}
+        Already sign in on NextShop?{" "}
         <Link
           href="/sign-in"
+          replace={true}
           className="hover:text-brand text-sm underline underline-offset-4"
         >
           Sign in

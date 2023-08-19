@@ -5,9 +5,7 @@ import CreateComment from "@/components/comment/CreateComment";
 import UserComment from "@/components/comment/UserComment";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { Loader2 } from "lucide-react";
 import Image from "next/image";
-import { Suspense } from "react";
 
 async function getData(id: string) {
   const res = await fetch(
@@ -73,8 +71,6 @@ const page = async ({ params }: Props) => {
           <Comment comment={comment} />
         </CommentWrapper>
       ))}
-
-      {/* <CommentList restComment={restComment}/> */}
     </div>
   );
 };

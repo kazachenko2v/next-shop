@@ -22,10 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn("flex flex-col h-screen", inter.className)}>
+      <body className={cn("flex h-screen flex-col", inter.className)}>
         <Providers>
           <Header />
-          <main className="container grow max-w-6xl mx-auto">{children}</main>
+          <main className="container mx-auto max-w-6xl grow">{children}</main>
           {authModal}
 
           <Footer />

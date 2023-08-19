@@ -6,7 +6,7 @@ import { Button } from "./ui/Button";
 import { Icons } from "./Icons";
 import { useToast } from "@/hooks/useToast";
 
-const UserAuthForm = () => {
+const GoogleAuthForm = () => {
   const { toast } = useToast();
 
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -37,11 +37,11 @@ const UserAuthForm = () => {
         onClick={loginWithGoogle}
         disabled={isLoading}
       >
-        {isLoading ? null : <Icons.google className="h-4 w-4 mr-2" />}
+        {isLoading ? null : <Icons.google className="mr-2 h-4 w-4" />}
         Google
       </Button>
     </div>
   );
 };
 
-export default UserAuthForm;
+export default GoogleAuthForm;

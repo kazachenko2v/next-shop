@@ -2,7 +2,7 @@ import { formatTimeToNow } from "@/lib/utils2";
 import { UserAvatar } from "../UserAvatar";
 import { ExtendedComment } from "@/types";
 
-const Comment = ({ comment }: { comment: ExtendedComment }) => {
+const Comment = async ({ comment }: { comment: ExtendedComment }) => {
   return (
     <>
       <div className="flex gap-4">

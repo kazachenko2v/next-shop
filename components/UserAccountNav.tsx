@@ -37,17 +37,8 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
           </div>
         </div>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/">Feed</Link>
-        </DropdownMenuItem>
+        <DropdownMenuItem asChild></DropdownMenuItem>
 
-        <DropdownMenuItem asChild>
-          <Link href="/r/create">Create Community</Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuItem asChild>
-          <Link href="/settings">Settings</Link>
-        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           className="cursor-pointer"

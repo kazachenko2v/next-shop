@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-const commentText = z.string().min(3).max(100);
+const commentText = z
+  .string()
+  .min(3, { message: "Must be 3 or more characters long" })
+  .max(100, { message: "Must be 100 or less characters long" });
 
 export const CommentValidator = z.object({
   gameId: z.string(),

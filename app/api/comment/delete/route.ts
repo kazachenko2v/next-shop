@@ -31,7 +31,7 @@ export async function PATCH(req: Request) {
     }
 
     return new Response(
-      "Could not post to subreddit at this time. Please try later",
+      "Could not delete comment at this time. Please try later",
       { status: 500 },
     );
   }

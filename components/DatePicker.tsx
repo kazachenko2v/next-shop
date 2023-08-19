@@ -49,13 +49,11 @@ const CustomFilter = () => {
     }
 
     if (date?.to && date.from) {
-      console.log(date.to.toString());
-
       router.push(
         updateSearchParams(
           "dates",
-          `${dateToString(date.from)},${dateToString(date.to)}`
-        )
+          `${dateToString(date.from)},${dateToString(date.to)}`,
+        ),
       );
     }
   };

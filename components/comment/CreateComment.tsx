@@ -1,9 +1,6 @@
 "use client";
 
-import React, { FC, useState } from "react";
-import { Textarea } from "../ui/Textarea";
-import { Button } from "../ui/Button";
-import { Label } from "../ui/Label";
+import React, { FC } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { toast } from "@/hooks/useToast";
@@ -33,6 +30,13 @@ const CreateComment: FC<CreateCommentProps> = ({ gameId }) => {
         if (err.response?.status === 401) {
           return loginToast();
         }
+        if (err.response?.status === 400) {
+          return toast({
+            title: "Something went wrong.",
+            description: err.response?.data[0].message,
+            variant: "destructive",
+          });
+        }
       }
 
       return toast({
@@ -47,7 +51,12 @@ const CreateComment: FC<CreateCommentProps> = ({ gameId }) => {
   });
 
   return (
-    <CommentForm initText={''} mutate={create} isPending={isPending} options={{ gameId }} />
+    <CommentForm
+      initText={""}
+      mutate={create}
+      isPending={isPending}
+      options={{ gameId }}
+    />
   );
 };
 

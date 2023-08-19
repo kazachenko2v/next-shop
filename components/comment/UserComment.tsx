@@ -10,7 +10,6 @@ import {
 import { useCustomToasts } from "@/hooks/useCustomToasts";
 import { toast } from "@/hooks/useToast";
 import { useRouter } from "next/navigation";
-import CreateComment from "./CreateComment";
 import { UserCommentsProps } from "@/types";
 import { Button } from "../ui/Button";
 import { FC, useState } from "react";
@@ -60,6 +59,13 @@ const UserComment: FC<UserCommentsProps> = ({ comment, gameId, userId }) => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 401) {
           return loginToast();
+        }
+        if (err.response?.status === 400) {
+          return toast({
+            title: "Something went wrong.",
+            description: err.response?.data[0].message,
+            variant: "destructive",
+          });
         }
       }
 
